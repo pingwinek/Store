@@ -1,5 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using MVC.Data;
+using MVC.Models.IRepository;
+using MVC.Models.Repository;
+using MVC.Models.Seed;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,6 +14,8 @@ builder.Services.AddDbContext<StoreDbContext>(options =>
 {
     options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
+
+builder.Services.AddScoped<IStoreRepository, StoreRepository>();
 
 var app = builder.Build();
 
@@ -36,3 +41,5 @@ app.MapControllerRoute(
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();
+
+SeedData.EnsurePopulated(app);
