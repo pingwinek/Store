@@ -7,6 +7,6 @@ namespace MVC.Models.IRepository
 {
     public interface IStoreRepository
     {
-        IQueryable<Product> Products { get; set; }
+        IQueryable<Product> Products { get; }
     }
 }

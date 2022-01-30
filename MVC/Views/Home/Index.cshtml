@@ -1,8 +1,13 @@
-﻿@{
+﻿@model IQueryable<Product>
+@{
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn aboutbuilding Web apps with ASP.NET Core.</p>
-</div>
+@foreach (var p in Model)
+{
+    <div class="text-center">
+        <h3>@p.Name</h3>
+        @p.Description
+        <h4>@p.Price.ToString("c")</h4>
+    </div>
+}

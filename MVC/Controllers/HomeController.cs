@@ -1,21 +1,24 @@
 ﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using MVC.Models;
+using MVC.Models.IRepository;
 
 namespace MVC.Controllers;
 
 public class HomeController : Controller
 {
+    private IStoreRepository _repo;
     private readonly ILogger<HomeController> _logger;
 
-    public HomeController(ILogger<HomeController> logger)
+    public HomeController(ILogger<HomeController> logger, IStoreRepository repo)
     {
         _logger = logger;
+        _repo = repo;
     }
 
     public IActionResult Index()
     {
-        return View();
+        return View(_repo.Products);
     }
 
     public IActionResult Privacy()

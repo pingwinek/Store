@@ -15,6 +15,6 @@ namespace MVC.Models.Repository
             _context = context;
         }
         
-        public IQueryable<Product> Products { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public IQueryable<Product> Products => _context.Products;
     }
 }
