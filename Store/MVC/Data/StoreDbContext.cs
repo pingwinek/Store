@@ -8,6 +8,6 @@ namespace MVC.Data
         public StoreDbContext(DbContextOptions<StoreDbContext> options) : base(options)
         {}
 
-        public DbSet<Product> Products { get; set; }
+        public DbSet<Product> Products { get; set; } = default!;
     }
 }

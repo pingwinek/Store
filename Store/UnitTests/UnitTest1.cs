@@ -12,12 +12,12 @@ namespace UnitTests;
 
 public class ProductControllerTests
 {
-    private readonly ILogger<HomeController> _mockLogger;
+    private readonly ILogger<HomeController>? _mockLogger;
 
-    public ProductControllerTests(ILogger<HomeController> logger)
+    public ProductControllerTests()
     {
-        _mockLogger = logger;
     }
+
     [Fact]
     public void Can_Use_Repository()
     {
