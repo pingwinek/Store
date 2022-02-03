@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using MVC.Data;
 using MVC.Models.IRepository;
 using MVC.Models.Repository;
@@ -15,6 +16,7 @@ builder.Services.AddDbContext<StoreDbContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
 
+builder.Services.AddScoped<IStoreRepository, StoreRepository>();
 builder.Services.AddScoped<IStoreRepository, StoreRepository>();
 
 var app = builder.Build();

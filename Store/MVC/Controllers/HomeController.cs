@@ -9,6 +9,7 @@ public class HomeController : Controller
 {
     private IStoreRepository _repo;
     private readonly ILogger<HomeController> _logger;
+    public int PageSize = 2;
 
     public HomeController(ILogger<HomeController> logger, IStoreRepository repo)
     {
@@ -16,9 +17,9 @@ public class HomeController : Controller
         _repo = repo;
     }
 
-    public IActionResult Index()
+    public IActionResult Index(int productPage = 2)
     {
-        return View(_repo.Products);
+        return View(_repo.Products.OrderBy(p => p.Name).Skip((productPage - 1) * PageSize).Take(PageSize));
     }
 
     public IActionResult Privacy()
