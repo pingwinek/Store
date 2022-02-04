@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using MVC.Models;
 using MVC.Models.IRepository;
+using MVC.Models.ViewModels;
 
 namespace MVC.Controllers;
 
@@ -17,9 +18,21 @@ public class HomeController : Controller
         _repo = repo;
     }
 
-    public IActionResult Index(int productPage = 2)
+    public IActionResult Index(int productPage = 1)
     {
-        return View(_repo.Products.OrderBy(p => p.Name).Skip((productPage - 1) * PageSize).Take(PageSize));
+        return View(new ProductsListViewModel
+        {
+            Products = _repo.Products
+                .OrderBy(p => p.ProductId)
+                .Skip((productPage - 1) * PageSize)
+                .Take(PageSize),
+            PagingInfo = new PagingInfo
+            {
+                CurrentPage = productPage,
+                ItemsPerPage = PageSize,
+                TotalItems = _repo.Products.Count()
+            }
+        });
     }
 
     public IActionResult Privacy()

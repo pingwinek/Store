@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc.Routing;
+using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 using MVC.Models.ViewModels;
 
@@ -16,6 +17,8 @@ namespace MVC.Infrastructure
             _urlHelperFactory = urlHelperFactory;
         }
 
+        [ViewContext]
+        [HtmlAttributeNotBound]
         public ViewContext ViewContext { get; set; }
         public PagingInfo PageModel { get; set; }
         public string PageAction { get; set; }
