@@ -4,7 +4,6 @@ using MVC.Models.IRepository;
 using MVC.Models;
 using System.Linq;
 using MVC.Controllers;
-using System.Collections.Generic;
 using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Mvc;
 using MVC.Models.ViewModels;
