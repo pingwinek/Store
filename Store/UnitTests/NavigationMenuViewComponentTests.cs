@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 using MVC.Models.ViewModels;
 using MVC.Components;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Mvc.ViewComponents;
 
 namespace UnitTests
 {
@@ -20,20 +21,20 @@ namespace UnitTests
             // Arrange
             Mock<IStoreRepository> mock = new Mock<IStoreRepository>();
             mock.Setup(m => m.Products).Returns((new Product[] {
-                new Product {ProductId = 1, Name = "P1", Category = "Cat1"},
-                new Product {ProductId = 2, Name = "P2", Category = "Cat2"},
-                new Product {ProductId = 3, Name = "P3", Category = "Cat1"},
-                new Product {ProductId = 4, Name = "P4", Category = "Cat1"},
-                new Product {ProductId = 5, Name = "P5", Category = "Cat3"}
+                new Product {ProductId = 1, Name = "P1", Category = "Apples"},
+                new Product {ProductId = 2, Name = "P2", Category = "Apples"},
+                new Product {ProductId = 3, Name = "P3", Category = "Oranges"},
+                new Product {ProductId = 4, Name = "P4", Category = "Apples"},
+                new Product {ProductId = 5, Name = "P5", Category = "Plums"}
             }).AsQueryable<Product>());
 
             NavigationMenuViewComponent target = new NavigationMenuViewComponent(mock.Object);
 
             // Act
-            string[] results = ((IEnumerable<string>)(target.Invoke() as ViewComponentResult).ViewData.Model).ToArray();
+            string[] results = ((IEnumerable<string>)(target.Invoke() as ViewViewComponentResult).ViewData.Model).ToArray();
 
             // Assert
-            Assert.True(Enumerable.SequenceEqual(new ));
+            Assert.True(Enumerable.SequenceEqual(new string[] { "Apples", "Oranges", "Plums" }, results));
         }
         
     }
