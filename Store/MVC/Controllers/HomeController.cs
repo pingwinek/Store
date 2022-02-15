@@ -10,7 +10,7 @@ public class HomeController : Controller
 {
     private IStoreRepository _repo;
     private readonly ILogger<HomeController> _logger;
-    public int PageSize = 2;
+    public int PageSize = 4;
 
     public HomeController(ILogger<HomeController> logger, IStoreRepository repo)
     {
