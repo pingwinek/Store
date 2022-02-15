@@ -18,11 +18,12 @@ public class HomeController : Controller
         _repo = repo;
     }
 
-    public IActionResult Index(int productPage = 1)
+    public IActionResult Index(string category, int productPage = 1)
     {
         return View(new ProductsListViewModel
         {
             Products = _repo.Products
+                .Where(p => category == null || p.Category == category)
                 .OrderBy(p => p.ProductId)
                 .Skip((productPage - 1) * PageSize)
                 .Take(PageSize),

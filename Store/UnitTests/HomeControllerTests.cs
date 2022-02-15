@@ -29,7 +29,7 @@ public class HomeControllerTests
         controller.PageSize = 3;
 
         // Act
-        ProductsListViewModel result = (controller.Index() as ViewResult).Model as ProductsListViewModel;
+        ProductsListViewModel result = (controller.Index(null) as ViewResult).Model as ProductsListViewModel;
 
         // Assert
         Product[] prodArray = result.Products.ToArray();
@@ -58,7 +58,7 @@ public class HomeControllerTests
         controller.PageSize = 3;
 
         // Act
-        ProductsListViewModel result = (controller.Index(2) as ViewResult).ViewData.Model as ProductsListViewModel;
+        ProductsListViewModel result = (controller.Index(null, 2) as ViewResult).ViewData.Model as ProductsListViewModel;
 
         // Assert
         Product[] prodArray = result.Products.ToArray();
