@@ -37,8 +37,8 @@ app.UseStaticFiles();
 app.UseRouting();
 app.UseEndpoints(endpoints => {
     endpoints.MapControllerRoute(
-                        "catpage",
-                        "{category}/Page{productPage:int}",
+                        name: "catpage",
+                        pattern: "{category}/Page{productPage:int}",
                         new { Controller = "Home", action = "Index" });
     endpoints.MapControllerRoute(
                         "page",
