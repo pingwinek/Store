@@ -31,7 +31,7 @@ public class HomeController : Controller
             {
                 CurrentPage = productPage,
                 ItemsPerPage = PageSize,
-                TotalItems = _repo.Products.Count()
+                TotalItems = category == null ? _repo.Products.Count() : _repo.Products.Where(c => c.Category == category).Count()
             }
         });
     }
