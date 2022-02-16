@@ -20,6 +20,8 @@ builder.Services.AddScoped<IStoreRepository, StoreRepository>();
 builder.Services.AddScoped<IStoreRepository, StoreRepository>();
 
 builder.Services.AddRazorPages();
+builder.Services.AddDistributedMemoryCache();
+builder.Services.AddSession();
 
 var app = builder.Build();
 
@@ -35,6 +37,7 @@ app.UseHttpsRedirection();
 app.UseDeveloperExceptionPage();
 app.UseStatusCodePages();
 app.UseStaticFiles();
+app.UseSession();
 
 app.UseRouting();
 app.UseEndpoints(endpoints => {
