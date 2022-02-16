@@ -19,6 +19,8 @@ builder.Services.AddDbContext<StoreDbContext>(options =>
 builder.Services.AddScoped<IStoreRepository, StoreRepository>();
 builder.Services.AddScoped<IStoreRepository, StoreRepository>();
 
+builder.Services.AddRazorPages();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -53,6 +55,7 @@ app.UseEndpoints(endpoints => {
                         "Products/Page{productPage}",
                         new { Controller = "Home", action = "Index", productPage = 1 });
     endpoints.MapDefaultControllerRoute();
+    endpoints.MapRazorPages();
 });
 
 app.UseAuthorization();
