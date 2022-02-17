@@ -3,7 +3,7 @@ namespace MVC.Models
     public class Cart
     {
         public List<CartLine> Lines { get; set; } = new List<CartLine>();
-        public void AddItem(Product product, int quantity)
+        public virtual void AddItem(Product product, int quantity)
         {
             CartLine line = Lines.Where(x => x.Product.ProductId == product.ProductId).FirstOrDefault();
 
@@ -19,7 +19,7 @@ namespace MVC.Models
             }
         }
 
-        public void RemoveLine(Product product)
+        public virtual void RemoveLine(Product product)
         {
             Lines.RemoveAll(l => l.Product.ProductId == product.ProductId);
         }
@@ -29,7 +29,7 @@ namespace MVC.Models
             return Lines.Sum(e => e.Product.Price * e.Quantity);
         }
 
-        public void Clear()
+        public virtual void Clear()
         {
             Lines.Clear();
         }

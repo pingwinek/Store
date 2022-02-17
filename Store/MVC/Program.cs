@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using MVC.Data;
+using MVC.Models;
 using MVC.Models.IRepository;
 using MVC.Models.Repository;
 using MVC.Models.Seed;
@@ -22,6 +23,8 @@ builder.Services.AddScoped<IStoreRepository, StoreRepository>();
 builder.Services.AddRazorPages();
 builder.Services.AddDistributedMemoryCache();
 builder.Services.AddSession();
+builder.Services.AddScoped<Cart>(s => SessionCart.GetCart(s));
+builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
 var app = builder.Build();
 
